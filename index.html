@@ -155,25 +155,6 @@
   $(function() {
     $('#news').vTicker('init');
   });
-</script>
-    <script type="text/javascript">
-  $(window).load(function() {
-     function fixSoartexNav() {
-      var windowTop = $(window).scrollTop();
-      var anchorDiv = $('#sticky-anchor').offset().top;
-      if (windowTop > anchorDiv) {
-        $('#soartex-home-nav').addClass('soartex-nav-stick');
-        $('#main-header').addClass('PixelRuins-home-content');
-      } else {
-        $('#soartex-home-nav').removeClass('soartex-nav-stick');
-        $('#main-header').removeClass('PixelRuins-home-content');
-      }
-    }
-    $(function() {
-      $(window).scroll(fixSoartexNav);
-      fixSoartexNav();
-    });
-  });
-</script>
+
   </footer>
 </body></html>

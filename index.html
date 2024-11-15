@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RainbowPixel</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('assets/images/background_00.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+        }
+        .content {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <header>

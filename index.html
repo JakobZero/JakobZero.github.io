@@ -38,25 +38,35 @@
             flex: 1; /* 主体内容占据剩余空间 */
             padding: 20px;
             font-family: Arial, sans-serif;
+            position: relative;
         }
 
-        footer {
-            background: #222;
-            color: #fff;
-            padding: 10px 20px;
+        .logo-container {
+            position: absolute;
+            bottom: 80px; /* 距离 <footer> 上方 80 像素 */
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: space-around; /* 横向平铺 */
             align-items: center;
+            padding: 0 20px;
         }
 
-        .logo {
+        .logo-container img {
             height: 128px; /* 固定高度 */
             cursor: pointer; /* 鼠标悬停效果 */
             transition: transform 0.3s ease; /* 悬停动画 */
         }
 
-        .logo:hover {
-            transform: scale(1.1); /* 放大效果 */
+        .logo-container img:hover {
+            transform: scale(1.1); /* 悬停时放大 */
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
         }
     </style>
 </head>
@@ -73,12 +83,16 @@
             <h2>RainbowPixel Studio</h2>
             <p>This is the RainbowPixel Studio website that I created.</p>
         </section>
+
+        <!-- 项目 Logo 区域 -->
+        <div class="logo-container">
+            <a href="blockpixel.html"><img src="assets/images/blockpixel_logo.png" alt="blockpixel Logo"></a>
+            <a href="gridpixel.html"><img src="assets/images/gridpixel_logo.png" alt="gridpixel Logo"></a>
+        </div>
     </main>
 
     <footer>
-        <!-- 项目 Logo -->
-        <a href="blockpixel.html"><img src="assets/images/blockpixel_logo.png" class="logo" alt="BlockPixel"></a>
-        <a href="gridpixel.html"><img src="assets/images/gridpixel_logo.png" class="logo" alt="GridPixel"></a>
+        <p>&copy; 2024 Jakob_zero. All Rights Reserved. | RainbowPixel</p>
     </footer>
 </body>
 </html>

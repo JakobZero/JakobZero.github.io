@@ -7,45 +7,61 @@
     <title>RainbowPixel</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* 全局样式 */
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow-x: hidden;
+            height: 100%; /* 确保页面高度占满视口 */
+            display: flex;
+            flex-direction: column; /* 让页面内容按列布局 */
         }
-        
+
         .background-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: url('assets/images/background_00.jpg') no-repeat center center;
+            background: url('assets/images/back_001.jpg') no-repeat center center;
             background-size: cover;
             z-index: -1;
         }
-        
-        .content {
+
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            flex: 1; /* 主体内容占据剩余空间 */
             padding: 20px;
             font-family: Arial, sans-serif;
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
         }
     </style>
 </head>
 <body>
+    <!-- 背景图片 -->
     <div class="background-image"></div>
 
     <header>
-        <h1>
-            WELCOME
-        </h1>
+        <h1>WELCOME</h1>
     </header>
 
     <main>
-        <section class="studio-intro">
+        <section>
             <h2>RainbowPixel Studio</h2>
             <p>This is the RainbowPixel Studio website that I created.</p>
         </section>
-        <section class="projects">
+        <section>
             <h2>Project</h2>
             <ul>
                 <li>BlockPixel</li>
@@ -53,6 +69,7 @@
             </ul>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2024 Jakob_zero. All Rights Reserved. | RainbowPixel</p>
     </footer>

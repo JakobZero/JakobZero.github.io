@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>RainbowPixel</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -22,7 +23,7 @@
             background: url('assets/images/back_001.jpg') no-repeat center center;
             background-size: cover;
             z-index: -1;
-    }
+        }
         
         .content {
             padding: 20px;
@@ -31,6 +32,8 @@
     </style>
 </head>
 <body>
+    <div class="background-image"></div>
+
     <header>
         <h1>
             WELCOME
@@ -38,11 +41,11 @@
     </header>
 
     <main>
-        <section>
+        <section class="studio-intro">
             <h2>RainbowPixel Studio</h2>
             <p>This is the RainbowPixel Studio website that I created.</p>
         </section>
-        <section>
+        <section class="projects">
             <h2>Project</h2>
             <ul>
                 <li>BlockPixel</li>

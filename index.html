@@ -146,10 +146,11 @@
         }
 
         .video-thumbnail img {
-            width: 320px;  /* 设置图片宽度 */
-            height: 180px; /* 设置图片高度，保持 16:9 比例 */
-            object-fit: cover; /* 确保图片裁剪时不变形 */
-            border-radius: 8px; /* 可选：添加圆角效果 */
+            width: 100%;          /* 图片宽度占满父容器 */
+            max-width: 320px;     /* 限制图片最大宽度 */
+            height: auto;         /* 保持图片比例 */
+            object-fit: cover;    /* 确保裁剪后图片不变形 */
+            border-radius: 8px;   /* 可选：添加圆角 */
 }
 
         footer {

@@ -44,8 +44,16 @@
             padding: 10px 0;
             z-index: 10;
             display: flex;
+            flex-direction: column; /* 让主标题在导航栏下方 */
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 导航栏 */
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
         }
 
         nav a {
@@ -64,7 +72,7 @@
 
         /* 空白区域 */
         .spacer {
-            height: 100vh; /* 空白区域为一个屏幕高度 */
+            height: 80vh; /* 空白区域为一个屏幕高度 */
         }
 
         /* 主内容样式 */
@@ -76,6 +84,17 @@
 
         section {
             margin: 40px 0;
+        }
+        
+        /* 主标题 */
+        .main-title {
+            background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+            color: white;
+            font-size: 24px; /* 字体大小 */
+            font-weight: bold; /* 加粗 */
+            text-align: center;
+            padding: 10px 0; /* 上下内边距 */
+            width: 100%; /* 占满宽度 */
         }
 
         /* 标题样式 */

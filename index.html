@@ -5,95 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>RainbowPixel</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* 全局样式 */
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%; /* 确保页面高度占满视口 */
-            display: flex;
-            flex-direction: column; /* 让页面内容按列布局 */
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow-y: auto; /* 允许页面垂直滚动 */
         }
 
+        /* 背景图片，滚动速度减半 */
         .background-image {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             background: url('assets/images/Cover_1920_Brig.png') no-repeat center center;
             background-size: cover;
             z-index: -1;
+            will-change: transform; /* 优化滚动性能 */
         }
 
+        /* JavaScript 动态调整背景位置 */
+        body[data-scroll] .background-image {
+            transform: translateY(calc(var(--scroll) * -0.5px)); /* 速度减半 */
+        }
+
+        /* 固定导航栏 */
         header {
-            background: #791965;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        main {
-            flex: 1; /* 主体内容占据剩余空间 */
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            position: relative;
-            color: white;
-            text-align: center;
-        }
-
-        .logo-container {
-            position: absolute;
-            bottom: 40px; /* 距离 <footer> 上方 40 像素 */
+            position: fixed;
+            top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
+            background: rgba(121, 25, 101, 0.9); /* 半透明背景 */
+            color: #fff;
+            z-index: 10;
             display: flex;
-            justify-content: space-around; /* 横向平铺 */
-            align-items: center;
-            padding: 0 20px;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .logo-container img {
-            height: 128px; /* 固定高度 */
-            cursor: pointer; /* 鼠标悬停效果 */
-            transition: transform 0.3s ease; /* 悬停动画 */
+        /* 导航按钮样式 */
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
-        .logo-container img:hover {
-            transform: scale(1.1); /* 悬停时放大 */
+        nav a:hover {
+            background-color: #ff6584; /* 悬停效果 */
+        }
+
+        /* 主内容区样式 */
+        main {
+            margin-top: 80px; /* 为导航栏留出空间 */
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 图片滚动展示区 */
+        .scroll-section {
+            margin: 40px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .scroll-section img {
+            height: 150px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .scroll-section img:hover {
+            transform: scale(1.1);
+        }
+
+        /* 视频展示区 */
+        .video-section iframe {
+            width: 300px;
+            height: 200px;
+            margin: 0 10px;
         }
 
         footer {
             background: #222;
-            color: #fff;
+            color: white;
             text-align: center;
-            padding: 10px 20px;
+            padding: 20px;
+            margin-top: 40px;
         }
     </style>
 </head>
-<body>
+<body data-scroll>
     <!-- 背景图片 -->
     <div class="background-image"></div>
 
+    <!-- 固定导航栏 -->
     <header>
-        <h1>WELCOME</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="support.html">Support</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </nav>
     </header>
 
+    <!-- 主内容 -->
     <main>
+        <!-- 留白区域 -->
         <section>
-            <h2>RainbowPixel Studio</h2>
-            <p>RainbowPixel is a vibrant and creative young team dedicated to content creation for the Minecraft Marketplace. We specialize in developing high-quality texture packs, skin packs, behavior packs, and maps, delivering diverse and exciting experiences for players. Our goal is to showcase the endless possibilities of Minecraft through unique creativity and professional craftsmanship, lighting up the blocky worlds of every player!</p>
+            <h2>Welcome to RainbowPixel Studio</h2>
+            <p>We are dedicated to creating exciting and innovative Minecraft content.</p>
         </section>
 
-        <!-- 项目 Logo 区域 -->
-        <!-- div class="logo-container" -->
-            <!-- a href="jakobzero.html"><img src="assets/images/Jakob_Logo-64a.png" alt="Jakob.zero Logo"></a>
-    </div -->
+        <!-- 图片横向滚动展示区 -->
+        <section class="scroll-section">
+            <h3>Gallery</h3>
+            <img src="assets/images/project1.jpg" alt="Project 1" onclick="window.location='project1.html';">
+            <img src="assets/images/project2.jpg" alt="Project 2" onclick="window.location='project2.html';">
+            <img src="assets/images/project3.jpg" alt="Project 3" onclick="window.location='project3.html';">
+        </section>
+
+        <!-- 作品展录区 -->
+        <section class="scroll-section">
+            <h3>Our Works</h3>
+            <img src="assets/images/work1.jpg" alt="Work 1" onclick="window.location='work1.html';">
+            <img src="assets/images/work2.jpg" alt="Work 2" onclick="window.location='work2.html';">
+        </section>
+
+        <!-- YouTube 视频展示区 -->
+        <section class="scroll-section video-section">
+            <h3>Video Showcase</h3>
+            <iframe src="https://www.youtube.com/embed/samplevideo1" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/samplevideo2" frameborder="0" allowfullscreen></iframe>
+        </section>
     </main>
 
+    <!-- 页脚 -->
     <footer>
-        <p>&copy; RainbowPixel 2024. All Rights Reserved.</p>
+        <p>&copy; 2024 RainbowPixel. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // 背景图片滚动效果
+        document.addEventListener('scroll', () => {
+            document.body.style.setProperty('--scroll', window.scrollY);
+        });
+    </script>
 </body>
 </html>

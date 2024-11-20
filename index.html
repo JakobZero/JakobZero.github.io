@@ -12,10 +12,10 @@
             padding: 0;
             font-family: Arial, sans-serif;
             height: 100%;
-            overflow-y: auto; /* 允许页面垂直滚动 */
+            overflow-x: hidden; /* 禁止横向滚动 */
         }
 
-        /* 背景图片，滚动速度减半 */
+        /* 背景图片 */
         .background-image {
             position: fixed;
             top: 0;
@@ -25,30 +25,29 @@
             background: url('assets/images/Cover_1920_Brig.png') no-repeat center center;
             background-size: cover;
             z-index: -1;
-            will-change: transform; /* 优化滚动性能 */
         }
 
-        /* JavaScript 动态调整背景位置 */
-        body[data-scroll] .background-image {
-            transform: translateY(calc(var(--scroll) * -0.5px)); /* 速度减半 */
+        /* 背景滚动减速效果 */
+        body[data-scroll] {
+            background-attachment: fixed;
+            background-position: center 0;
+            background-repeat: no-repeat;
         }
 
-        /* 固定导航栏 */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(121, 25, 101, 0.9); /* 半透明背景 */
+            background: rgba(121, 25, 101, 0.9);
             color: #fff;
+            padding: 10px 0;
             z-index: 10;
             display: flex;
             justify-content: center;
-            padding: 10px 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        /* 导航按钮样式 */
         nav a {
             margin: 0 15px;
             color: white;
@@ -60,40 +59,50 @@
         }
 
         nav a:hover {
-            background-color: #ff6584; /* 悬停效果 */
+            background-color: #ff6584;
         }
 
-        /* 主内容区样式 */
+        /* 空白区域 */
+        .spacer {
+            height: 100vh; /* 空白区域为一个屏幕高度 */
+        }
+
+        /* 主内容样式 */
         main {
-            margin-top: 80px; /* 为导航栏留出空间 */
+            background: white;
+            color: black;
             padding: 20px;
-            text-align: center;
         }
 
-        /* 图片滚动展示区 */
-        .scroll-section {
+        section {
             margin: 40px 0;
+        }
+
+        /* 标题样式 */
+        .section-title {
+            background: red;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* 横向滚动样式 */
+        .scroll-container {
+            display: flex;
             overflow-x: auto;
-            white-space: nowrap;
+            gap: 20px;
+            padding: 10px;
         }
 
-        .scroll-section img {
-            height: 150px;
-            margin: 0 10px;
+        .scroll-container img {
+            max-height: 200px;
             cursor: pointer;
-            border-radius: 10px;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
 
-        .scroll-section img:hover {
+        .scroll-container img:hover {
             transform: scale(1.1);
-        }
-
-        /* 视频展示区 */
-        .video-section iframe {
-            width: 300px;
-            height: 200px;
-            margin: 0 10px;
         }
 
         footer {
@@ -101,7 +110,6 @@
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 40px;
         }
     </style>
 </head>
@@ -119,38 +127,40 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    
-    <!-- 动态空白区域 -->
+
+    <!-- 空白区域 -->
     <div class="spacer"></div>
 
-    <!-- 主内容 -->
+    <!-- 主体内容 -->
     <main>
-        <!-- 留白区域 -->
+        <!-- 展示区 -->
         <section>
-            <h2>Welcome to RainbowPixel Studio</h2>
-            <p>We are dedicated to creating exciting and innovative Minecraft content.</p>
+            <div class="section-title">展示区</div>
+            <div class="scroll-container">
+                <img src="assets/images/demo1.jpg" alt="Demo 1">
+                <img src="assets/images/demo2.jpg" alt="Demo 2">
+                <img src="assets/images/demo3.jpg" alt="Demo 3">
+            </div>
         </section>
 
-        <!-- 图片横向滚动展示区 -->
-        <section class="scroll-section">
-            <h3>Gallery</h3>
-            <img src="assets/images/project1.jpg" alt="Project 1" onclick="window.location='project1.html';">
-            <img src="assets/images/project2.jpg" alt="Project 2" onclick="window.location='project2.html';">
-            <img src="assets/images/project3.jpg" alt="Project 3" onclick="window.location='project3.html';">
-        </section>
-
-        <!-- 作品展录区 -->
-        <section class="scroll-section">
-            <h3>Our Works</h3>
-            <img src="assets/images/work1.jpg" alt="Work 1" onclick="window.location='work1.html';">
-            <img src="assets/images/work2.jpg" alt="Work 2" onclick="window.location='work2.html';">
+        <!-- 作品展示区 -->
+        <section>
+            <div class="section-title">作品展示区</div>
+            <div class="scroll-container">
+                <img src="assets/images/work1.jpg" alt="Work 1">
+                <img src="assets/images/work2.jpg" alt="Work 2">
+                <img src="assets/images/work3.jpg" alt="Work 3">
+            </div>
         </section>
 
         <!-- YouTube 视频展示区 -->
-        <section class="scroll-section video-section">
-            <h3>Video Showcase</h3>
-            <iframe src="https://www.youtube.com/embed/samplevideo1" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/samplevideo2" frameborder="0" allowfullscreen></iframe>
+        <section>
+            <div class="section-title">YouTube 视频展示区</div>
+            <div class="scroll-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
+            </div>
         </section>
     </main>
 
@@ -160,9 +170,10 @@
     </footer>
 
     <script>
-        // 背景图片滚动效果
+        // 实现背景滚动速度减半
         document.addEventListener('scroll', () => {
-            document.body.style.setProperty('--scroll', window.scrollY);
+            const scrollTop = window.scrollY;
+            document.body.style.backgroundPositionY = -(scrollTop * 0.5) + 'px';
         });
     </script>
 </body>

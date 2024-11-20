@@ -12,7 +12,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             height: 200%;
-            overflow-x: hidden; /* 禁止横向滚动 */
+            overflow-x: scroll; /* 禁止横向滚动 */
         }
 
         /* 背景图片 */
@@ -199,10 +199,12 @@
     </footer>
 
     <script>
-        // 实现背景滚动速度减半
-        document.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            document.body.style.backgroundPositionY = -(scrollTop * 0.5) + 'px';
+        // 动态调整背景图片滚动速度
+        const background = document.querySelector('.background-image');
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            background.style.backgroundPositionY = `${scrollPosition * 0.5}px`; // 调整滚动速度，0.5 为减缓比例
         });
     </script>
 </body>

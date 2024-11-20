@@ -88,13 +88,15 @@
         
         /* 主标题 */
         .main-title {
-            background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
-            color: white;
-            font-size: 24px; /* 字体大小 */
-            font-weight: bold; /* 加粗 */
+            position: absolute; /* 相对于视口定位 */
+            top: calc(60px + 20px); /* 60px 为 header 高度，20px 为间距 */
+            left: 0;
+            right: 0;
             text-align: center;
-            padding: 10px 0; /* 上下内边距 */
-            width: 100%; /* 占满宽度 */
+            color: white;
+            font-size: 36px; /* 主标题字体大小 */
+            font-weight: bold; /* 加粗 */
+            z-index: 9; /* 确保标题不被背景遮盖 */
         }
 
         /* 标题样式 */
@@ -145,12 +147,11 @@
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
         </nav>
-        <!-- 主标题 -->
-        <div class="main-title">
-            RainbowPixel Studio
-        </div>
     </header>
-
+    <!-- 主标题 -->
+    <div class="main-title">
+        RainbowPixel Studio
+    </div>
     <!-- 空白区域 -->
     <div class="spacer"></div>
 

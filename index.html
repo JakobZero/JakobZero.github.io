@@ -12,7 +12,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             height: auto%;  /* 高度自动适应内容 */
-            overflow-y: auto; /* 启用垂直滚动 */
+            overflow-x: auto; /* 启用垂直滚动 */
         }
 
         /* 背景图片样式 */
@@ -58,7 +58,7 @@
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* 导航栏 */
         nav {
             display: flex;
@@ -95,7 +95,7 @@
         section {
             margin: 40px 0;
         }
-        
+
         /* 主标题 */
         .main-title {
             position: absolute; /* 相对于视口定位 */
@@ -208,12 +208,26 @@
     </footer>
 
     <script>
+        // 获取页面高度
+        const mainContent = document.body;
+        const pageHeight = mainContent.scrollHeight;
+        const viewportHeight = window.innerHeight;
+        // 如果内容小于视口高度，设置高度限制
+        if (pageHeight < viewportHeight) {
+            mainContent.style.height = `${viewportHeight}px`;
+        }
+        // 限制滚动位置
+        window.addEventListener('scroll', () => {
+            const maxScroll = pageHeight - viewportHeight;
+            if (window.scrollY > maxScroll) {
+                window.scrollTo(0, maxScroll); // 阻止滚动超出页脚
+            }
         // 动态调整背景图片滚动速度
         const background = document.querySelector('.background-image');
 
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
-            background.style.backgroundPositionY = ${scrollPosition * 0.4}px; // 调整滚动速度，0.5 为减缓比例
+            background.style.backgroundPositionY = `${scrollPosition * 0.4}px`; // 调整滚动速度，0.5 为减缓比例
         });
     </script>
 </body>

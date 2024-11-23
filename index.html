@@ -94,10 +94,9 @@
         main {
             background: white;
             color: black;
-            padding: 100px 20px 20px; /* 上移 80px */
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1200px; /* 可选，设置最大宽度来控制main的宽度 */
+            width: 100%; /* 宽度占满窗口 */
+            margin: 0; /* 移除默认的外边距 */
+            padding: 0; /* 移除默认的内边距 */
         }
 
         section {
@@ -119,10 +118,10 @@
 
         /* 标题样式 */
         .section-title {
-            position: relative; /* 使其相对于页面定位，而不是受限于 main 的宽度 */
-            width: 100vw; /* 设置为整个视口宽度 */
             background: green;
             color: white;
+            left: 0;
+            width: 100%;
             padding: 10px 0;
             text-align: center;
             margin-bottom: 20px;

@@ -93,14 +93,15 @@
 
         /* 主内容样式 */
         main {
-            background: white;
+            background: white; /* 背景设置为白色 */
             color: black;
-            padding: 80px 20px 20px; /* 上移 80px */
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1200px; /* 可选，设置最大宽度来控制main的宽度 */
-            position: relative; /* 确保覆盖在 spacer 之上 */
-        }
+            padding: 80px 20px 20px; /* 内边距 */
+            margin: 0; /* 去掉自动对齐的外边距 */
+            width: 100%; /* 占据整个页面宽度 */
+            box-sizing: border-box; /* 包括内边距在宽度计算中 */
+            position: relative; /* 确保不被其他元素遮挡 */
+            max-width: none; /* 去掉最大宽度限制 */
+}
         
         section {
             margin: 40px 0;

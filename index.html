@@ -3,254 +3,760 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Jakob.zero|Home</title>
+    <meta name="description" content="Jakob.Zero makes Minecraft texture packs, including BlockPixel since 2011, along with GridPixel and RainbowPixel studio.">
+    <meta name="theme-color" content="#5c3a1e">
+    <title>Jakob.Zero | Home</title>
     <link rel="icon" href="assets/images/Jakob_Logo-64a-export.ico" type="image/x-icon">
+    <link rel="preload" href="assets/fonts/press-start-2p-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/images/Cover_1920_Brig.png" as="image">
     <style>
-        /* 全局样式 */
-        body, html {
+        @font-face {
+            font-family: "Press Start 2P";
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url("assets/fonts/press-start-2p-latin.woff2") format("woff2");
+        }
+
+        :root {
+            --ink: #14110e;
+            --panel: #3c3c3c;
+            --panel-deep: #2a2a2a;
+            --text: #f4f4f4;
+            --muted: #d5d5d5;
+            --gold: #ffd83b;
+            --gold-ink: #2a2204;
+            --hover: #ffff7a;
+            --grass: #5d8a2e;
+            --grass-light: #8fbf55;
+            --grass-dark: #2f4a16;
+            --slot: #8d8d8d;
+            --bevel-light: #bdbdbd;
+            --bevel-dark: #2b2b2b;
+            --shadow: #140e09;
+            color-scheme: dark;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            background-color: #6b4423;
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAA4klEQVR42l2Sq44CUAxE50MQCAQJBoFAItAoFAqFwa1cuXYdkg/gOxlykpMGc9M7bafTR35Pq8t+8bhun7fd33ndb40ifV8/h//L5n5c1mhAjQakvqK8+JqDj8yJF0ktUSr0lY/6NcwJoWioQSgUcKGtOFyxgb4EKWbiFgw+ddsPfNbvF65Qi6KzH+jRDU4/qQ8+60y+L7yRQbcqIbZpezUgc6YzR6n1qq0BUd/UZj/MWq7PlPDNHTn4eSPmZI5FDe7boRsWdo7QqcHW50WVIp6NB+t81M2XnWbyzXm7b2dA8hvYP/47Uk84xgAAAABJRU5ErkJggg==");
+            background-size: 32px 32px;
+            image-rendering: pixelated;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            color: var(--gold);
+        }
+
+        a:hover,
+        a:focus-visible {
+            color: var(--hover);
+        }
+
+        .skip {
+            position: absolute;
+            left: 0.75rem;
+            top: 0.75rem;
+            z-index: 40;
+            transform: translateY(-160%);
+            background: var(--gold);
+            color: var(--ink);
+            text-decoration: none;
+            font-family: "Press Start 2P", "Courier New", monospace;
+            font-size: 0.65rem;
+            line-height: 1.6;
+            padding: 0.7rem 0.8rem;
+            border: 3px solid var(--ink);
+        }
+
+        .skip:focus {
+            transform: none;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .pixel {
+            font-family: "Press Start 2P", "Courier New", monospace;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.7;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1rem;
+            padding: 0.65rem 1rem;
+            background: #3a3a3a;
+            border-bottom: 4px solid var(--ink);
+            box-shadow: inset 0 4px 0 #6f6f6f, 0 6px 0 var(--shadow);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: #fff;
+            text-decoration: none;
+            text-shadow: 2px 2px 0 #222;
+            font-size: 0.68rem;
+        }
+
+        .brand img {
+            width: 36px;
+            height: 36px;
+            image-rendering: pixelated;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .nav-link,
+        .mc-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0.65rem 0.75rem;
+            color: #fff;
+            text-decoration: none;
+            text-shadow: 2px 2px 0 #222;
+            background: #6b6b6b;
+            border: 3px solid var(--ink);
+            border-radius: 0;
+            box-shadow: inset 3px 3px 0 #9c9c9c, inset -3px -3px 0 #3a3a3a;
+            font-family: "Press Start 2P", "Courier New", monospace;
+            font-size: 0.62rem;
+            line-height: 1.45;
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible,
+        .mc-btn:hover,
+        .mc-btn:focus-visible {
+            color: var(--hover);
+            background: #808080;
+        }
+
+        .nav-link[aria-current="page"] {
+            color: #fff;
+            background: #2f5a16;
+            box-shadow: inset 3px 3px 0 #6ea344, inset -3px -3px 0 #17300a;
+        }
+
+        .nav-link:focus-visible,
+        .mc-btn:focus-visible,
+        .shot:focus-visible,
+        .project-link:focus-visible,
+        .video:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        .hero {
+            position: relative;
+            border-bottom: 4px solid var(--ink);
+            box-shadow: 0 8px 0 var(--shadow);
+        }
+
+        .hero-media {
+            display: block;
+            width: 100%;
+            height: clamp(300px, 68vh, 640px);
+            object-fit: cover;
+            object-position: center 32%;
+            background: #6ec6ff;
+        }
+
+        main {
+            width: min(1080px, calc(100% - 1.5rem));
+            margin: 1.5rem auto 2rem;
+            display: grid;
+            gap: 1.35rem;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: inset 4px 4px 0 #6e6e6e, inset -4px -4px 0 #242424, 8px 8px 0 var(--shadow);
+            padding: 1.15rem 1.15rem 1.3rem;
+        }
+
+        .panel h2 {
+            margin: 0 0 1rem;
+            color: var(--gold);
+            font-size: clamp(0.82rem, 2vw, 1.02rem);
+            text-align: center;
+            text-shadow: 3px 3px 0 var(--gold-ink);
+        }
+
+        .intro {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 1.15rem 1.35rem;
+            align-items: center;
+        }
+
+        .intro-logo {
+            width: 128px;
+            height: 128px;
+            image-rendering: pixelated;
+            background: #87ceeb;
+            border: 4px solid var(--ink);
+            box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.25), 5px 5px 0 var(--shadow);
+        }
+
+        .intro h1 {
+            margin: 0 0 0.75rem;
+            color: var(--gold);
+            font-size: clamp(0.82rem, 2vw, 1.02rem);
+            text-align: left;
+            text-shadow: 3px 3px 0 var(--gold-ink);
+        }
+
+        .intro p {
+            margin: 0;
+            max-width: 68ch;
+            color: var(--text);
+        }
+
+        .section-lead {
+            margin: -0.35rem 0 1rem;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .gallery,
+        .videos,
+        .projects {
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        .gallery {
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+        }
+
+        .videos {
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
+        }
+
+        .projects {
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+        }
+
+        .shot {
+            display: block;
+            width: 100%;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            height: auto%;  /* 高度自动适应内容 */
-            overflow-x: hidden; /* 禁止水平滚动 */
-            overflow-y: auto; /* 启用垂直滚动 */
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            cursor: zoom-in;
+            background: #111;
+            border: 4px solid var(--ink);
+            border-radius: 0;
+            box-shadow: inset 3px 3px 0 #5a5a5a, inset -3px -3px 0 #1a1a1a, 4px 4px 0 var(--shadow);
         }
 
-        /* 背景图片样式 */
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .shot img,
+        .video img {
+            display: block;
             width: 100%;
             height: 100%;
-            background-color: #37c1dd; /* 填充空白区域的背景颜色 */
-            z-index: -1; /* 背景位于内容下方 */
-            overflow: hidden; /* 确保背景图片不会溢出容器 */
+            object-fit: cover;
         }
 
-        .background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('assets/images/Cover_1920_Brig.png') no-repeat center center;
-            background-size: cover;
+        .shot:hover img,
+        .video:hover img {
+            filter: brightness(1.08);
         }
 
-        /* 背景滚动减速效果 */
-        body[data-scroll] {
-            background-attachment: fixed;
-            background-position: center 0;
-            background-repeat: no-repeat;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: green; /* 背景颜色，带透明效果 */
-            color: #fff;
-            padding: 10px 0;
-            z-index: 10;
+        .project,
+        .project-link {
             display: flex;
-            flex-direction: column; /* 让主标题在导航栏下方 */
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        /* 导航栏 */
-        nav {
-            display: flex;
-            justify-content: center; /* 按钮居中对齐 */
-            overflow-x: auto; /* 启用水平滚动 */
-            padding: 10px 0;
-            white-space: nowrap; /* 防止按钮换行 */
-            scroll-behavior: smooth; /* 平滑滚动效果（可选） */
-        }
-
-        nav a {
-            margin: 0 15px;
-            color: white;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            min-height: 100%;
+            padding: 1rem 0.85rem 1.1rem;
+            text-align: center;
+            color: inherit;
             text-decoration: none;
-            font-size: 16px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            flex-shrink: 0; /* 防止按钮缩小 */
+            background: var(--panel-deep);
+            border: 4px solid var(--ink);
+            box-shadow: inset 3px 3px 0 #555, inset -3px -3px 0 #1c1c1c, 5px 5px 0 var(--shadow);
         }
 
-        nav a:hover {
-            background-color: #78cf24;
+        .project-link:hover,
+        .project-link:focus-visible {
+            color: var(--hover);
+            background: #333;
         }
 
-        /* 空白区域 */
-        .spacer {
-            height: 92vh; /* 空白区域为一个屏幕高度 */
-            background: none; /* 确保没有背景色遮挡 */
+        .project h3,
+        .project-link h3 {
+            margin: 0;
+            color: var(--gold);
+            font-size: 0.72rem;
+            text-shadow: 2px 2px 0 #000;
         }
 
-        /* 主内容样式 */
-        main {
-            background: white; /* 背景设置为白色 */
-            color: black;
-            padding: 70px 0 20px; /* 上下内边距，去掉左右内边距 */
-            margin: 0; /* 去掉自动对齐的外边距 */
-            width: 100%; /* 占据整个页面宽度 */
-            box-sizing: border-box; /* 包括内边距在宽度计算中 */
-            position: relative; /* 确保不被其他元素遮挡 */
-            max-width: none; /* 去掉最大宽度限制 */
+        .project p,
+        .project-link p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.98rem;
         }
 
-        .content-container {
-            max-width: 1200px; /* 限制内容最大宽度 */
-            margin: 0 auto; /* 居中对齐 */
-            padding: 0 20px; /* 可选：增加内容内边距 */
-            box-sizing: border-box; /* 包括内边距在宽度计算中 */
-        }
-        
-        section {
-            margin: 40px 0;
+        .slot {
+            width: 118px;
+            height: 118px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: var(--slot);
+            border: 3px solid var(--ink);
+            box-shadow: inset 4px 4px 0 #4a4a4a, inset -4px -4px 0 #f2f2f2;
         }
 
-        /* 主标题 */
-        .main-title {
-            position: absolute; /* 相对于视口定位 */
-            top: calc(60px + 60px); /* 60px 为 header 高度，20px 为间距 */
-            left: 0;
-            right: 0;
+        .slot img {
+            width: 84px;
+            height: 84px;
+            object-fit: contain;
+            image-rendering: pixelated;
+        }
+
+        .rp-frame {
+            position: relative;
+            display: block;
+        }
+
+        .rp-frame img {
+            position: absolute;
+            left: calc(112px * -1380 / 420);
+            top: calc(112px * -450 / 420);
+            width: calc(112px * 3200 / 420);
+            height: calc(112px * 1920 / 420);
+            max-width: none;
+            margin: 0;
+            object-fit: fill;
+            image-rendering: auto;
+        }
+
+        .go {
+            display: inline-block;
+            margin-top: auto;
+            color: #fff;
+            background: #2f5a16;
+            border: 3px solid var(--ink);
+            box-shadow: inset 2px 2px 0 #6ea344, inset -2px -2px 0 #17300a;
+            padding: 0.45rem 0.55rem;
+            font-size: 0.55rem;
+            text-shadow: 2px 2px 0 #102006;
+        }
+
+        .video {
+            position: relative;
+            display: block;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            color: #fff;
+            text-decoration: none;
+            background: #111;
+            border: 4px solid var(--ink);
+            box-shadow: 4px 4px 0 var(--shadow);
+        }
+
+        .play {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 54px;
+            height: 44px;
+            transform: translate(-50%, -50%);
+            background: #6b6b6b;
+            border: 3px solid var(--ink);
+            box-shadow: inset 3px 3px 0 #a0a0a0, inset -3px -3px 0 #333, 4px 4px 0 #000;
+        }
+
+        .play::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            border-style: solid;
+            border-width: 9px 0 9px 15px;
+            border-color: transparent transparent transparent var(--gold);
+        }
+
+        .site-footer {
             text-align: center;
-            color: white;
-            font-size: 36px; /* 主标题字体大小 */
-            font-weight: bold; /* 加粗 */
-            z-index: 9; /* 确保标题不被背景遮盖 */
+            padding: 1.2rem 1rem 1.5rem;
+            background: #2b2b2b;
+            color: #eee;
+            border-top: 4px solid var(--ink);
+            box-shadow: inset 0 4px 0 #5c5c5c;
         }
 
-        /* 标题样式 */
-        .section-title {
-            background: green;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 20px;
+        .site-footer p {
+            margin: 0;
+            font-size: 0.62rem;
+            line-height: 1.8;
         }
 
-        /* 横向滚动样式 */
-        .scroll-container {
+        #lightbox {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        #lightbox[open] {
             display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 10px;
+            align-items: center;
+            justify-content: center;
         }
 
-        .scroll-container img {
-            max-height: 200px;
-            height: auto;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+        #lightbox::backdrop {
+            background: rgba(8, 6, 4, 0.86);
         }
 
-        .scroll-container img:hover {
-            transform: scale(1.1);
+        .lightbox-frame {
+            width: min(1080px, calc(100vw - 1.25rem));
+            max-height: calc(100vh - 1.25rem);
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            padding: 0.65rem;
+            background: #3a3a3a;
+            border: 4px solid var(--ink);
+            box-shadow: inset 3px 3px 0 #777, inset -3px -3px 0 #222, 8px 8px 0 #000;
         }
 
-        .video-thumbnail img {
-            width: 100%;          /* 图片宽度占满父容器 */
-            max-width: 320px;     /* 限制图片最大宽度 */
-            height: auto;         /* 保持图片比例 */
-            object-fit: cover;    /* 确保裁剪后图片不变形 */
-            border-radius: 8px;   /* 可选：添加圆角 */
-}
+        .lightbox-bar,
+        .lightbox-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
 
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
+        #lightbox-caption {
+            margin: 0;
+            flex: 1 1 180px;
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        #lightbox-img {
+            width: 100%;
+            max-height: min(68vh, 720px);
+            object-fit: contain;
+            background: #111;
+            border: 3px solid var(--ink);
+        }
+
+        @media (max-width: 640px) {
+            .topbar {
+                justify-content: center;
+                padding: 0.55rem 0.5rem;
+            }
+
+            .nav {
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 0.58rem;
+                padding: 0.6rem 0.5rem;
+            }
+
+            main {
+                width: min(1080px, calc(100% - 1rem));
+            }
+
+            .panel {
+                padding: 0.9rem 0.75rem 1rem;
+            }
+
+            .intro {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+
+            .intro h1 {
+                text-align: center;
+            }
+
+            .intro-copy {
+                width: 100%;
+            }
+
+            .gallery,
+            .videos {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .shot:hover img,
+            .video:hover img {
+                filter: none;
+            }
         }
     </style>
 </head>
-<body data-scroll>
-    <!-- 背景图片 -->
-    <div class="background-image"></div>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
 
-    <!-- 固定导航栏 -->
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="support.html">Support</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
+    <header class="topbar">
+        <a class="brand pixel" href="index.html">
+            <img src="assets/images/Jakob_Logo_128_new.png" alt="" width="128" height="128">
+            Jakob.Zero
+        </a>
+        <nav class="nav" aria-label="Primary">
+            <a class="nav-link" href="index.html" aria-current="page">Home</a>
+            <a class="nav-link" href="jakobzero.html">Jakob.Zero</a>
         </nav>
     </header>
-    <!-- 主标题 -->
-    <div class="main-title">
-        Hello World!
-    </div>
-    <!-- 空白区域 -->
-    <div class="spacer"></div>
 
-    <!-- 主体内容 -->
-    <main>
-        <div class="content-container">
-        <section>
-            <img src="assets/images/Jakob_Logo_128_new.png" alt="Jakob_zero Logo">
-            <h2>Jakob.Zero</h2>
-            <p>Hi everyone, I'm Jakob.Zero, a Minecraft texture pack creator. I've been creating the BlockPixel texture pack since 2011, making it 14 years now. I am still actively developing and updating the texture pack. Over the years, I’ve made many friends from around the world who share the same interests. I’m deeply grateful for their companionship and encouragement throughout the years. All of this has been made possible thanks to the support and encouragement from friends like you.</p>
-        </section>
-        <!-- 展示区 -->
-        <section>
-            <div class="section-title">Exhibition</div>
-            <div class="scroll-container">
-                <img src="assets/screenshots/2023-09-02_00.17.19.png" alt="Demo 1">
-                <img src="assets/screenshots/2023-09-02_00.20.13.png" alt="Demo 2">
-                <img src="assets/screenshots/2023-09-02_01.01.14.png" alt="Demo 3">
-                <img src="assets/screenshots/2023-09-02_00.39.07.png" alt="Demo 4">
-                <img src="assets/screenshots/2023-09-04_01.17.04.png" alt="Demo 5">
-                <img src="assets/screenshots/2023-09-04_01.46.58.png" alt="Demo 6">
+    <section class="hero" aria-label="Cover art">
+        <img class="hero-media" src="assets/images/Cover_1920_Brig.png" alt="Pixel-art landscape with a volcano, jungle temple, lake, and stone spires under a bright sky." width="3072" height="1920" fetchpriority="high">
+    </section>
+
+    <main id="main">
+        <section class="panel intro" aria-labelledby="intro-title">
+            <img class="intro-logo" src="assets/images/Jakob_Logo_128_new.png" alt="Jakob.Zero logo: a pixel tower among trees." width="128" height="128">
+            <div class="intro-copy">
+                <h1 class="pixel" id="intro-title">Jakob.Zero</h1>
+                <p>Hi everyone, I'm Jakob.Zero, a Minecraft texture pack creator. I've been creating the BlockPixel texture pack since 2011<span id="years-note"></span>. I am still actively developing and updating the texture pack. Over the years, I’ve made many friends from around the world who share the same interests. I’m deeply grateful for their companionship and encouragement throughout the years. All of this has been made possible thanks to the support and encouragement from friends like you.</p>
             </div>
         </section>
 
-        <!-- 作品展示区 -->
-        <section>
-            <div class="section-title">Protfolio</div>
-            <div class="scroll-container">
-                <img src="assets/images/work1.jpg" alt="Work 1">
-                <img src="assets/images/work2.jpg" alt="Work 2">
-                <img src="assets/images/work3.jpg" alt="Work 3">
+        <section class="panel" aria-labelledby="exhibition-title">
+            <h2 class="pixel" id="exhibition-title">Exhibition</h2>
+            <p class="section-lead">Screenshots from the packs. Select one to enlarge it.</p>
+            <div class="gallery">
+                <button class="shot" type="button" data-full="assets/screenshots/2023-09-02_00.17.19.png">
+                    <img src="assets/screenshots/thumbs/2023-09-02_00.17.19.jpg" alt="Night cherry-blossom grove with a lantern glowing under a pink tree." width="1280" height="720" loading="lazy">
+                </button>
+                <button class="shot" type="button" data-full="assets/screenshots/2023-09-02_00.20.13.png">
+                    <img src="assets/screenshots/thumbs/2023-09-02_00.20.13.jpg" alt="Daytime cherry-blossom forest and a flower-covered meadow." width="1280" height="720" loading="lazy">
+                </button>
+                <button class="shot" type="button" data-full="assets/screenshots/2023-09-02_01.01.14.png">
+                    <img src="assets/screenshots/thumbs/2023-09-02_01.01.14.jpg" alt="A white and green skeleton-like figure standing in a cherry-blossom field." width="1280" height="720" loading="lazy">
+                </button>
+                <button class="shot" type="button" data-full="assets/screenshots/2023-09-02_00.39.07.png">
+                    <img src="assets/screenshots/thumbs/2023-09-02_00.39.07.jpg" alt="A zombie standing in a stone cave." width="1280" height="720" loading="lazy">
+                </button>
+                <button class="shot" type="button" data-full="assets/screenshots/2023-09-04_01.17.04.png">
+                    <img src="assets/screenshots/thumbs/2023-09-04_01.17.04.jpg" alt="Night cliff with a glowing cherry tree, stars, and the moon." width="1280" height="720" loading="lazy">
+                </button>
+                <button class="shot" type="button" data-full="assets/screenshots/2023-09-04_01.46.58.png">
+                    <img src="assets/screenshots/thumbs/2023-09-04_01.46.58.jpg" alt="Misty green hills and a stream seen from a high cliff." width="1280" height="720" loading="lazy">
+                </button>
+                <button class="shot" type="button" data-full="assets/screenshots/2023-09-07_00.03.42.png">
+                    <img src="assets/screenshots/thumbs/2023-09-07_00.03.42.jpg" alt="Colorful wood blocks, a campfire, and a rainbow path in a forest." width="1280" height="766" loading="lazy">
+                </button>
             </div>
         </section>
 
-        <!-- YouTube 视频展示区 -->
-        <section>
-            <div class="section-title">Video Preview</div>
-            <div class="scroll-container">
-                <a href="https://youtu.be/nosRGLEdd-c?si=lGDPBo-7Fq3aiVdF" target="_blank"> <img src="https://img.youtube.com/vi/nosRGLEdd-c/hqdefault.jpg" alt="Video Thumbnail" > </a>
-                <a href="https://youtu.be/qLEBkCaoqh8?si=yLcbAv-PL4dzpI-I" target="_blank"> <img src="https://img.youtube.com/vi/qLEBkCaoqh8/hqdefault.jpg" alt="Video Thumbnail" > </a>
-                <a href="https://youtu.be/TGEj-YfKJzc?si=qRQCv9rHQWzc97Gp" target="_blank"> <img src="https://img.youtube.com/vi/TGEj-YfKJzc/hqdefault.jpg" alt="Video Thumbnail" > </a>
-                <a href="https://youtu.be/RyfhZeumv_U?si=mnKLw0HcYSjN89IA" target="_blank"> <img src="https://img.youtube.com/vi/RyfhZeumv_U/hqdefault.jpg" alt="Video Thumbnail" > </a>
-                <a href="https://youtu.be/zdlCZ56x13c?si=dOIwqagCXjKfTIUw" target="_blank"> <img src="https://img.youtube.com/vi/zdlCZ56x13c/hqdefault.jpg" alt="Video Thumbnail" > </a>
+        <section class="panel" aria-labelledby="projects-title">
+            <h2 class="pixel" id="projects-title">Projects</h2>
+            <div class="projects">
+                <a class="project-link" href="blockpixel.html">
+                    <span class="slot">
+                        <img src="assets/images/blockpixel_icon.png" alt="" width="128" height="128">
+                    </span>
+                    <h3 class="pixel">BlockPixel</h3>
+                    <p>Minecraft texture pack, in progress since 2011.</p>
+                    <span class="go pixel">View page</span>
+                </a>
+                <a class="project-link" href="gridpixel.html">
+                    <span class="slot">
+                        <img src="assets/images/gridpixel_icon.png" alt="" width="128" height="128">
+                    </span>
+                    <h3 class="pixel">GridPixel</h3>
+                    <p>A related pixel project.</p>
+                    <span class="go pixel">View page</span>
+                </a>
+                <article class="project">
+                    <span class="slot rp-frame">
+                        <img src="assets/images/rainbowpixel_logo.jpg" alt="" width="3200" height="1920" loading="lazy">
+                    </span>
+                    <h3 class="pixel">RainbowPixel</h3>
+                    <p>Studio for Minecraft Marketplace packs, skins, and maps.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="panel" aria-labelledby="video-title">
+            <h2 class="pixel" id="video-title">Video Preview</h2>
+            <div class="videos">
+                <a class="video" href="https://youtu.be/nosRGLEdd-c?si=lGDPBo-7Fq3aiVdF" target="_blank" rel="noopener noreferrer">
+                    <img src="https://img.youtube.com/vi/nosRGLEdd-c/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                    <span class="play" aria-hidden="true"></span>
+                    <span class="sr-only">Play YouTube video 1 (opens in a new tab)</span>
+                </a>
+                <a class="video" href="https://youtu.be/qLEBkCaoqh8?si=yLcbAv-PL4dzpI-I" target="_blank" rel="noopener noreferrer">
+                    <img src="https://img.youtube.com/vi/qLEBkCaoqh8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                    <span class="play" aria-hidden="true"></span>
+                    <span class="sr-only">Play YouTube video 2 (opens in a new tab)</span>
+                </a>
+                <a class="video" href="https://youtu.be/TGEj-YfKJzc?si=qRQCv9rHQWzc97Gp" target="_blank" rel="noopener noreferrer">
+                    <img src="https://img.youtube.com/vi/TGEj-YfKJzc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                    <span class="play" aria-hidden="true"></span>
+                    <span class="sr-only">Play YouTube video 3 (opens in a new tab)</span>
+                </a>
+                <a class="video" href="https://youtu.be/RyfhZeumv_U?si=mnKLw0HcYSjN89IA" target="_blank" rel="noopener noreferrer">
+                    <img src="https://img.youtube.com/vi/RyfhZeumv_U/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                    <span class="play" aria-hidden="true"></span>
+                    <span class="sr-only">Play YouTube video 4 (opens in a new tab)</span>
+                </a>
+                <a class="video" href="https://youtu.be/zdlCZ56x13c?si=dOIwqagCXjKfTIUw" target="_blank" rel="noopener noreferrer">
+                    <img src="https://img.youtube.com/vi/zdlCZ56x13c/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+                    <span class="play" aria-hidden="true"></span>
+                    <span class="sr-only">Play YouTube video 5 (opens in a new tab)</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <!-- 页脚 -->
-    <footer>
-        <p>&copy; 2024 Jakob.Zero. All Rights Reserved.</p>
+    <footer class="site-footer">
+        <p class="pixel">&copy; <span id="copyright-year">2026</span> Jakob.Zero. All rights reserved.</p>
     </footer>
 
-    <script>
-        // 动态调整背景图片滚动速度
-        const background = document.querySelector('.background-image');
+    <dialog id="lightbox" aria-labelledby="lightbox-caption">
+        <div class="lightbox-frame">
+            <div class="lightbox-bar">
+                <p id="lightbox-caption"></p>
+                <button class="mc-btn" type="button" id="lightbox-close">Close</button>
+            </div>
+            <img id="lightbox-img" alt="">
+            <div class="lightbox-controls">
+                <button class="mc-btn" type="button" id="lightbox-prev">Previous</button>
+                <button class="mc-btn" type="button" id="lightbox-next">Next</button>
+                <a class="mc-btn" id="lightbox-full" href="assets/screenshots/2023-09-02_00.17.19.png" target="_blank" rel="noopener noreferrer">Original</a>
+            </div>
+            <p class="sr-only">Use the arrow keys to move between screenshots. Press Escape to close. Original opens the full-size image in a new tab.</p>
+        </div>
+    </dialog>
 
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            background.style.backgroundPositionY = `${scrollPosition * 0.4}px`; // 调整滚动速度，0.5 为减缓比例
-        });
+    <script>
+        (function () {
+            var yearEl = document.getElementById("copyright-year");
+            var now = new Date().getFullYear();
+            if (yearEl) yearEl.textContent = String(now);
+
+            var yearsNote = document.getElementById("years-note");
+            var years = now - 2011;
+            if (yearsNote && years > 0) {
+                yearsNote.textContent = " (" + years + " years and counting)";
+            }
+
+            var dialog = document.getElementById("lightbox");
+            var lightboxImg = document.getElementById("lightbox-img");
+            var caption = document.getElementById("lightbox-caption");
+            var fullLink = document.getElementById("lightbox-full");
+            var shots = Array.prototype.slice.call(document.querySelectorAll(".shot"));
+            var index = 0;
+
+            function show(nextIndex) {
+                if (!shots.length) return;
+                index = (nextIndex + shots.length) % shots.length;
+                var shot = shots[index];
+                var source = shot.querySelector("img");
+                var full = shot.getAttribute("data-full");
+                lightboxImg.src = source ? source.src : full;
+                lightboxImg.alt = source ? source.alt : "";
+                caption.textContent = source ? source.alt : "";
+                if (fullLink && full) fullLink.href = full;
+            }
+
+            shots.forEach(function (shot, shotIndex) {
+                shot.addEventListener("click", function () {
+                    show(shotIndex);
+                    if (dialog && typeof dialog.showModal === "function") {
+                        dialog.showModal();
+                    }
+                });
+            });
+
+            document.getElementById("lightbox-close").addEventListener("click", function () {
+                dialog.close();
+            });
+            document.getElementById("lightbox-prev").addEventListener("click", function () {
+                show(index - 1);
+            });
+            document.getElementById("lightbox-next").addEventListener("click", function () {
+                show(index + 1);
+            });
+
+            dialog.addEventListener("click", function (event) {
+                if (event.target === dialog) dialog.close();
+            });
+
+            dialog.addEventListener("keydown", function (event) {
+                if (event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    show(index - 1);
+                } else if (event.key === "ArrowRight") {
+                    event.preventDefault();
+                    show(index + 1);
+                }
+            });
+        }());
     </script>
 </body>
 </html>
